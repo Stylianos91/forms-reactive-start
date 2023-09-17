@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-email-child',
@@ -8,7 +9,6 @@ import { Observable, Subscription } from 'rxjs';
   styleUrls: ['./email-child.component.css']
 })
 export class EmailChildComponent implements OnInit {
-private eventsSubscription: Subscription;
 @Output() emailValue = new EventEmitter<any>();
 @Input() events: Observable<void>;
   constructor() { }
@@ -17,14 +17,10 @@ private eventsSubscription: Subscription;
     this.emailForm =  new FormGroup({
       'email': new FormControl(null),
     });
-    this.eventsSubscription = this.events.subscribe(() => this.emitFormValue());
+  this.events.pipe(take(1)).subscribe(() => this.emitFormValue());
   
   }
  
-  
-  ngOnDestroy() {
-    this.eventsSubscription.unsubscribe();
-  }
   emitFormValue() {
     console.log('this.emailForm.value', this.emailForm.value);
     this.emailValue.emit(this.emailForm.value['email']);
