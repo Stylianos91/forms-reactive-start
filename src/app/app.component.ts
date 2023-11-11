@@ -9,7 +9,10 @@ import { Subject } from 'rxjs';
 })
 export class AppComponent implements OnInit{
   eventsSubject: Subject<void> = new Subject<void>();
-
+  options = ['alpha', 'beta','gamma'];
+  selectedOption = "alpha";
+  optiones: string[] = ["10", "20", "50"];
+  selectedQuantity = "10";
   genders = ['male', 'female'];
   signupForm: FormGroup;
   emailValue:any;
@@ -18,6 +21,7 @@ export class AppComponent implements OnInit{
       'username': new FormControl(null),
        'email': new FormControl(null),
       'gender': new FormControl('male'),
+      'options': new FormControl('alpha'),
     })
   }
   onFormvalue(event){
