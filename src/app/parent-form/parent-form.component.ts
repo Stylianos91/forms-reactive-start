@@ -11,9 +11,9 @@ export class ParentFormComponent implements OnInit {
 
   eventsSubject: Subject<void> = new Subject<void>();
   options = ['alpha', 'beta','gamma'];
-  selectedOption = "alpha";
+  public selectedSet = this.options[0];
   optiones: string[] = ["10", "20", "50"];
-  selectedQuantity;
+  public selectedQuantity =  this.optiones[0];
   genders = ['male', 'female'];
   signupForm: FormGroup;
   emailValue:any;
@@ -32,8 +32,15 @@ export class ParentFormComponent implements OnInit {
 
   onSubmit() {
     this.eventsSubject.next();
-    console.log('this.signupForm ', this.signupForm );
+    console.log('this.signupForm ', this.signupForm.value );
   }
-
+  changeset(e: any) {
+    console.log('e set',e.target.value);
+    this.selectedSet = e.target.value;
+  }
+  changeQuantity(e: any) {
+    console.log('e q',e.target.value);
+    this.selectedQuantity = e.target.value;
+  }
 
 }
