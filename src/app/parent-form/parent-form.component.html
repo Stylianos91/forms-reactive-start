@@ -1,0 +1,44 @@
+<p>Parent Form</p>
+<div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              formControlName="username"
+              class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="options">Options</label>
+            <select  type="text"
+            id="options"
+            formControlName="options"
+            class="form-control" >
+              <option *ngFor="let option of options" [value]="option">{{option}}</option>
+            </select>
+            <select name="selectedQuantity" id="aantal" class="form-control" >
+              <option *ngFor="let option of optiones" [value]="selectedQuantity">{{option}}</option>
+           </select>
+          
+           <p>Selected Quantity : {{selectedQuantity}}</p>
+        
+          
+          </div>
+    
+          <app-email-child (emailValue)="onFormvalue($event)" [events]="eventsSubject.asObservable()"></app-email-child> 
+          <div class="radio" *ngFor="let gender of genders">
+            <label>
+              <input
+                type="radio"
+                formControlName="gender"
+                [value]="gender">{{ gender }}
+            </label>
+          </div>
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
