@@ -13,6 +13,7 @@ import { TreeContainerComponent } from './tree-container/tree-container.componen
 import { TreeDataService } from './services/tree-data.service';
 import { TreeListComponent } from './tree-list/tree-list.component';
 import {CdkTreeModule} from '@angular/cdk/tree';
+import { DeleteNodeService } from './services/delete-node.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,7 @@ import {CdkTreeModule} from '@angular/cdk/tree';
     MatButtonModule,
     CdkTreeModule
   ],
-  providers: [TreeDataService],
+  providers: [TreeDataService, DeleteNodeService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
